@@ -18,11 +18,14 @@ import com.kms.katalon.core.webservice.keyword.WSBuiltInKeywords as WS
 import com.kms.katalon.core.webui.keyword.WebUiBuiltInKeywords as WebUiBuiltInKeywords
 import com.kms.katalon.core.webui.keyword.WebUiBuiltInKeywords as WebUI
 import internal.GlobalVariable as GlobalVariable
+import com.kms.katalon.core.cucumber.keyword.CucumberBuiltinKeywords as CucumberKW
+import com.kms.katalon.core.windows.keyword.WindowsBuiltinKeywords as Windows
+import static com.kms.katalon.core.testobject.ObjectRepository.findWindowsObject
 
 'Invoke Browser and Navigate to Demo Application'
 WebUI.openBrowser('')
 
-WebUI.navigateToUrl(GlobalVariable.URL_Application)
+WebUI.navigateToUrl(GlobalVariable.URL)
 
 'Wait till the page load'
 WebUI.waitForPageLoad(15)
@@ -30,20 +33,24 @@ WebUI.waitForPageLoad(15)
 'Enter the value of username (From Internal Test Data)'
 WebUI.setText(findTestObject('Login Page of Demo Application/input_username'), 'John Doe')
 
+'Wait till the page load'
+WebUI.waitForPageLoad(15)
+
+CustomKeywords.'newpackage.HighlightElement.printWelcomeMessage'()
+
+CustomKeywords.'newpackage.HighlightElement.printMessage'()
+
+CustomKeywords.'newpackage.HighlightElement.clearCookies'()
+
+CustomKeywords.'newpackage.HighlightElement.takeScreenshotWithTimestamp'('C:\\Users\\mukesh.jain_crmit\\git\\Katalon_Custom_Keyword\\screenshots')
+
+CustomKeywords.'newpackage.HighlightElement.verifyPageTitle'('CURA Healthcare Service')
+
 'Enter the value of password (From Internal Test Data)'
 WebUI.setText(findTestObject('Login Page of Demo Application/input_password'), 'ThisIsNotAPassword')
 
 'Click on Login Button\\r\\n'
 WebUI.click(findTestObject('Login Page of Demo Application/button_Login'))
 
-'Wait till the page load'
-WebUI.waitForPageLoad(15)
-
-'Verifying the dropdown with expected and actual values\\r\\n'
-CustomKeywords.'newpackage.VerifyExpectedAndActualOptionsInDropdown.VerifyExpectedAndActual'(findTestObject('Make Appointment Page/Dropdown_Facility'), 
-    ['Seoul CURA Healthcare Center', 'Hongkong CURA Healthcare Center', 'Tokyo CURA Healthcare Center'])
-
-'Verify whether the values in the dropdown are in Alphabetical Order using Custom Keyword'
-CustomKeywords.'newpackage.VerifyDrodownValues_AlphabeticalOrder.verifyOptionsInDropdownInAphabeticalOrder'(findTestObject(
-        'Make Appointment Page/Dropdown_Facility'))
+CustomKeywords.'newpackage.HighlightElement.closeBrowser'()
 

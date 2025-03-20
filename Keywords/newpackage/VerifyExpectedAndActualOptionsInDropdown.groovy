@@ -17,16 +17,15 @@ public class VerifyExpectedAndActualOptionsInDropdown {
 			List<String> expectedOptions = listOfOptions;
 			List<String> actualOptions = new ArrayList<String>();
 			for (WebElement option : ele.getOptions()) {
-				
+
 				actualOptions.add(option.getText());
 			}
 			Collections.sort(actualOptions)
 			Collections.sort(expectedOptions)
 			Assert.assertEquals(expectedOptions.toArray(), actualOptions.toArray());
 		} catch (Exception e) {
-			
+
 			Assert.fail(e.getMessage());
 		}
 	}
-
 }
